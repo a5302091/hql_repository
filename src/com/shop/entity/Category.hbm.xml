@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.shop.entity.Category" table="category">
+
+		<id name="cid">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="cname"></property>
+		
+		<!-- 二级分类集合映射 -->
+		<set name="categorySeconds" order-by="csid" lazy="false">
+		   <key column="cid" />
+				<!-- 二级分类只能对应一个一级分类 -->			
+		 <one-to-many class="com.shop.entity.CategorySecond"></one-to-many>
+
+		</set>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="false" />
+    
+    
+    
+    
+    <package name="shop" extends="struts-default" namespace="/">
+    
+    <global-results>
+		<result name="msg">/WEB-INF/jsp/msg.jsp</result>	
+    </global-results>
+    
+    <!-- 访问主页面Action -->
+    	<action name="index" class="indexAction">
+    		<result  name="index">/WEB-INF/jsp/index.jsp</result>
+    	</action>
+    	
+   	<!-- 用户模块Action -->
+   		<action name="user_*" class="userAction" method="{1}">
+   			<result name="RegistPage">/WEB-INF/jsp/regist.jsp</result>	
+			<result name="loginpage">/WEB-INF/jsp/login.jsp</result>
+			<result name="login">/WEB-INF/jsp/login.jsp</result>
+			<result name="login_success" type="redirectAction">index</result>	
+			<result name="quit" type="redirectAction">index</result>
+			<result name="checkcodeFail">/WEB-INF/jsp/regist.jsp</result>	
+			<result name="checkLogin">/WEB-INF/jsp/login.jsp</result>
+   		</action>
+   		
+   		<!-- 验证码Action -->
+   		<action name="check" class="CheckImgAction">
+   				
+   		</action>
+   		
+   		<!-- 商品模块Action -->
+   		<action name="product_*" class="productAction" method="{1}">
+   				<result name="findBypid">/WEB-INF/jsp/product.jsp</result>
+				<result name="findBycid">/WEB-INF/jsp/productList.jsp</result>
+				<result name="findByCsid">/WEB-INF/jsp/productList.jsp</result>
+   		</action>
+   		
+   		<!-- 购物车模块Action -->
+   		<action name="car_*" class="carAction" method="{1}">
+   			<result name="addCar">/WEB-INF/jsp/car.jsp</result>
+   			<result name="clean">/WEB-INF/jsp/car.jsp</result>
+   			<result name="shan">/WEB-INF/jsp/car.jsp</result>
+   		</action>
+    	
+    </package>
+
+	
+</struts>
